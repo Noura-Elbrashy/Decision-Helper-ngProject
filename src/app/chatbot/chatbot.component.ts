@@ -48,7 +48,7 @@ export class ChatbotComponent {
         },
         error => {
           console.error("API Error:", error);
-          this.messages.push({ role: 'assistant', content: '❌ Request failed. Please try again.' });
+          this.messages.push({ role: 'assistant', content: ' Request failed. Please try again.' });
           this.saveMessages();
         }
       );

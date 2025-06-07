@@ -1,0 +1,109 @@
+.home-container {
+  text-align: center;
+  padding: 4rem;
+  min-height: 100vh;
+}
+
+.intro-card h1 {
+  font-size: 3rem;
+  color: #ffffff;
+}
+h1 i {
+  margin-right: 12px;
+  color: #f3f6f8;
+  filter: drop-shadow(0 0 3px #ffc935);
+}
+.moving-img {
+  position: absolute;
+  right: 5%; 
+  top: 30%;
+  width: clamp(250px, 60vw, 200px); 
+  animation: arcMove 4s ease-in-out infinite alternate;
+  z-index: 10;
+  pointer-events: none;
+}
+
+@keyframes arcMove {
+  0% {
+    transform: translateY(-15px) translateX(0px);
+  }
+  100% {
+    transform: translateY(15px) translateX(-20px);
+  }
+}
+
+
+@media (max-width: 768px) {
+  .moving-img {
+    top: 20%;
+    right: 5%;
+    width: clamp(80px, 20vw, 110px);
+  }
+}
+
+
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #f0efee;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.method-section h2 {
+  margin: 2rem 0 1rem;
+  font-size: 2rem;
+  color: rgb(255, 204, 109);
+}
+
+.method-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.method-card {
+  background: #ffffff3d;
+  border-radius: 15px;
+   box-shadow: 0 8px 16px rgb(232, 220, 159); 
+ /* box-shadow: 0 8px 16px rgba(7, 9, 55, 0.298);  */
+  width: 280px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.method-card:hover {
+  transform: scale(1.05);
+}
+
+.method-card img {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.method-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.method-card p {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.method-card button {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background: #4e8df5;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.method-card button:hover {
+  background: #366ee0;
+}

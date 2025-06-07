@@ -1,5 +1,36 @@
-<div class="text-center mt-5">
-  <h1>Welcome to Decision Helper!</h1>
-  <p>Need help making a choice? Try our <a routerLink="/chat">AI Chatbot</a> 🤖</p>
-</div>
+<div class="home-container">
+  <div class="intro-card">
+    <h1> <i class="fas fa-lightbulb"></i><i class="fas fa-brain"></i>  Decision Helper</h1>
+    
+    <img class="moving-img" style="max-width: 19em;" src="./../../assets/pic/b4e06bd99cbffce9f46b44aa782cd7b6-removebg-preview.png" alt="which way">
+    <img  style="max-width: 18em;" src="./../../assets/pic/bra-removebg-preview.png" alt="brain">
+    <p class="subtitle">
+      Feeling stuck between two or more choices? Need help making a choice ?<br>
+      Let us help you make the smartest move !
+    </p>
+  </div>
 
+  <div class="method-section">
+    <h2><i class="fa-solid fa-signs-post"></i> Choose your way : </h2>
+
+    <div class="method-cards">
+
+      <!-- ai -->
+      <div class="method-card">
+        <img src="./../../assets/pic/949abfb7c96070f19df03ac68d22afe1-removebg-preview.png" alt="AI Chat" />
+        <h3>Talk to AI</h3>
+        <p>Chat with our smart assistant and get help instantly!</p>
+        <button routerLink="/chatbot" routerLinkActive="active">💬 Start Chat</button>
+      </div>
+
+      <!-- manual -->
+      <div class="method-card">
+        <img src="./../../assets/pic/a52a1c92a2030f487eec97551d96765e-removebg-preview.png" alt="Manual Method" />
+        <h3>Manual Helper</h3>
+        <p>Evaluate your options with custom scoring system.</p>
+        <button routerLink="/manual">📝 Start Manually</button>
+      </div>
+
+    </div>
+  </div>
+</div>

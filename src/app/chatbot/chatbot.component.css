@@ -33,7 +33,7 @@ p {
   background: #ffffff;
   border-radius: 24px;
   padding: 2.5rem 2rem;
-  max-width: 2000px;
+  max-width: 1000px;
   margin: 0 auto;
   box-shadow: 0 12px 30px rgba(10, 34, 57, 0.15);
   display: flex;
@@ -164,7 +164,7 @@ p {
   padding: 0 1.6rem;
   font-size: 1.2rem;
   cursor: pointer;
-  transition: background 0.4s ease;
+  
   display: flex;
   align-items: center;
   justify-content: center;
