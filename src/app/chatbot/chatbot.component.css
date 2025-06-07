@@ -23,12 +23,18 @@ h2.fw-bold i {
 }
 
 p {
-  color: #555;
+  color: #120953;
   font-size: 1.2rem;
   font-weight: 300;
   letter-spacing: 0.7px;
 }
+.robo-img{
+max-width: 11rem; 
+ box-shadow: 0 12px 30px rgb(122, 191, 255);
+  border-radius: 180px;
+   margin: 22px;
 
+}
 .chatbox {
   background: #ffffff;
   border-radius: 24px;
