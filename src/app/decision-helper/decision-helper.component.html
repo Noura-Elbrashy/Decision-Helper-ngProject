@@ -1,0 +1,175 @@
+
+<div class="container">
+
+  <div style="text-align: right; margin-bottom: 20px;">
+    <button (click)="toggleLanguage()"
+            style="background: #667eea; color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer;">
+      {{ currentLanguage === 'en' ? 'العربية' : 'English' }}
+    </button>
+  </div>
+
+  <div class="header">
+    <h1>
+      <i class="fas fa-brain"></i>
+      {{ getText('title') }}
+    </h1>
+    <p>{{ getText('subtitle') }}</p>
+  </div>
+
+  <div class="step-indicator">
+    <div class="step" [class.active]="isStepActive(1)">
+      <div class="step-number">1</div>
+      <span>{{ getText('addOptions') }}</span>
+    </div>
+    <div class="step" [class.active]="isStepActive(2)">
+      <div class="step-number">2</div>
+      <span>{{ getText('identifyFactors') }}</span>
+    </div>
+    <div class="step" [class.active]="isStepActive(3)">
+      <div class="step-number">3</div>
+      <span>{{ getText('evaluation') }}</span>
+    </div>
+    <div class="step" [class.active]="isStepActive(4)">
+      <div class="step-number">4</div>
+      <span>{{ getText('results') }}</span>
+    </div>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-fill" [style.width.%]="getProgressPercentage()"></div>
+  </div>
+
+
+  <div class="section" *ngIf="currentStep === 1">
+    <h2>
+      <i class="fas fa-list-ul"></i>{{ getText('addYourOptions') }}
+    </h2>
+    <div class="input-group">
+      <label for="optionInput">{{ getText('writeOption') }}</label>
+      <input
+        type="text"
+        id="optionInput"
+        class="input-field"
+        [placeholder]="getText('optionPlaceholder')"
+        [(ngModel)]="optionInput"
+        (keydown)="onEnterKeyOption($event)">
+      <button (click)="addOption()" class="add-btn">
+        <i class="fas fa-plus"></i>
+        {{ getText('addOption') }}
+      </button>
+    </div>
+
+    <div id="optionsList">
+      <div class="list-item slide-in" *ngFor="let option of options; let i = index">
+        <span>
+          <i class="fas fa-check-circle"
+             [style.margin-left]="currentLanguage === 'en' ? '10px' : '0'"
+             [style.margin-right]="currentLanguage === 'ar' ? '10px' : '0'"
+             style="color: #48bb78;"></i>
+          {{ option }}
+        </span>
+        <button (click)="removeOption(i)" class="delete-btn">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </div>
+
+    <button (click)="goToStep2()" class="calculate-btn" style="margin-top: 20px;">
+      {{ getText('nextIdentifyingFactors') }}
+      <i class="fas" [class.fa-arrow-right]="currentLanguage === 'en'" [class.fa-arrow-left]="currentLanguage === 'ar'"></i>
+    </button>
+  </div>
+
+
+  <div class="section" *ngIf="currentStep === 2">
+    <h2>
+      <i class="fas fa-balance-scale"></i>
+      {{ getText('identifyImportantFactors') }}
+    </h2>
+    <div class="input-group">
+      <label for="factorInput">{{ getText('addFactor') }}</label>
+      <input
+        type="text"
+        id="factorInput"
+        class="input-field"
+        [placeholder]="getText('factorPlaceholder')"
+        [(ngModel)]="factorInput"
+        (keydown)="onEnterKeyFactor($event)">
+      <button (click)="addFactor()" class="add-btn">
+        <i class="fas fa-plus"></i>
+        {{ getText('addFactorBtn') }}
+      </button>
+    </div>
+
+    <div id="factorsList">
+      <div class="list-item slide-in" *ngFor="let factor of factors; let i = index">
+        <span>
+          <i class="fas fa-weight-hanging"
+             [style.margin-left]="currentLanguage === 'en' ? '10px' : '0'"
+             [style.margin-right]="currentLanguage === 'ar' ? '10px' : '0'"
+             style="color: #667eea;"></i>
+          {{ factor }}
+        </span>
+        <button (click)="removeFactor(i)" class="delete-btn">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </div>
+
+    <button (click)="goToStep3()" class="calculate-btn" style="margin-top: 20px;">
+      {{ getText('nextStartEvaluation') }}
+      <i class="fas" [class.fa-arrow-right]="currentLanguage === 'en'" [class.fa-arrow-left]="currentLanguage === 'ar'"></i>
+    </button>
+  </div>
+
+
+  <div class="section" *ngIf="currentStep === 3">
+    <h2>
+      <i class="fas fa-star"></i>
+      {{ getText('rateEachOption') }}
+    </h2>
+    <div class="evaluation-grid">
+      <div class="option-card slide-in" *ngFor="let option of options">
+        <div class="option-title">{{ option }}</div>
+        <div class="factor-rating" *ngFor="let factor of factors">
+          <span>{{ factor }}</span>
+          <div class="rating-slider">
+            <input
+              type="range"
+              min="1"
+              max="10"
+              [value]="evaluations[option]?.[factor] || 5"
+              class="slider"
+              (input)="updateRating(option, factor, +$any($event.target).value)">
+          </div>
+          <span class="rating-value">{{ evaluations[option]?.[factor] || 5 }}</span>
+        </div>
+      </div>
+    </div>
+
+    <button (click)="calculateResults()" class="calculate-btn">
+      <i class="fas fa-calculator"></i>
+      {{ getText('calculateResults') }}
+    </button>
+  </div>
+
+
+  <div class="results-section" *ngIf="currentStep === 4">
+    <div class="winner">
+      <i class="fas fa-trophy"></i>{{ getText('bestOption') }} {{ winner }}
+    </div>
+    <div id="recommendationText"></div>
+    <div class="score-breakdown">
+      <div class="score-card" *ngFor="let scoreEntry of getSortedScores()">
+        <h3>{{ scoreEntry[0] }}</h3>
+        <div style="font-size: 2rem; margin: 10px 0;">{{ scoreEntry[1] }}</div>
+        <div>{{ getText('pointsFrom') }} {{ getMaxPossibleScore() }}</div>
+      </div>
+    </div>
+
+    <button (click)="resetApp()" class="calculate-btn" style="background: rgba(255,255,255,0.2); margin-top: 30px;">
+      <i class="fas fa-redo"></i>
+      {{ getText('newDecision') }}
+    </button>
+  </div>
+</div>
