@@ -30,7 +30,8 @@ p {
 }
 .robo-img{
 max-width: 11rem; 
- box-shadow: 0 12px 30px  rgb(122, 191, 255 );
+ box-shadow:  0 0 30px rgb(92, 225, 255);
+;
   border-radius: 180px;
    margin: 22px;
 
