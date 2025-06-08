@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+// import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { Router, NavigationEnd } from '@angular/router';
+// import { Router, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -9,13 +11,13 @@ import { Router, NavigationEnd } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'decision-helper';
-    constructor(private router: Router) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        window.scrollTo(0, 0);  //up
-      }
-    });
+
+
+
+export class HomeComponent {
+  constructor(private router: Router) {}
+
+  goToManual() {
+    this.router.navigate(['/manual']);
   }
 }

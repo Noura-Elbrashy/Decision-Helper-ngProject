@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './chatbot.component.html',
-  styleUrls: ['./chatbot.component.css'] 
+  styleUrls: ['./chatbot.component.css']
 })
 export class ChatbotComponent {
   userMessage = '';
@@ -25,7 +25,7 @@ export class ChatbotComponent {
     if (!this.userMessage.trim()) return;
 
     this.messages.push({ role: 'user', content: this.userMessage });
-    this.saveMessages();  
+    this.saveMessages();
 
     const body = {
       model: "openai/gpt-3.5-turbo",
@@ -34,7 +34,7 @@ export class ChatbotComponent {
     };
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${environment.openRouterKey}`,
+     'Authorization': `Bearer ${environment.openRouterKey}`,
       'Content-Type': 'application/json'
     });
 
@@ -44,7 +44,7 @@ export class ChatbotComponent {
           const botMessage = response.choices[0]?.message?.content || 'No reply from bot';
           this.messages.push({ role: 'assistant', content: botMessage });
           this.userMessage = '';
-          this.saveMessages();  
+          this.saveMessages();
         },
         error => {
           console.error("API Error:", error);
