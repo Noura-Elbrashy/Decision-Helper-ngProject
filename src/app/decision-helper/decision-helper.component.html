@@ -138,11 +138,12 @@
               type="range"
               min="1"
               max="10"
-              [value]="evaluations[option]?.[factor] || 5"
+   [value]="evaluations[option][factor] || 5"
+
               class="slider"
               (input)="updateRating(option, factor, +$any($event.target).value)">
           </div>
-          <span class="rating-value">{{ evaluations[option]?.[factor] || 5 }}</span>
+          <span class="rating-value">{{ evaluations[option][factor] || 5}}</span>
         </div>
       </div>
     </div>
