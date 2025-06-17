@@ -1,0 +1,68 @@
+.container {
+  max-width: 600px;
+  margin-top: 5rem;
+}
+
+.card {
+  border-radius: 15px;
+  background: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header.bg-gradient-primary {
+  background: linear-gradient(90deg, #4e73df, #1cc88a);
+  border-radius: 15px 15px 0 0;
+}
+
+.input-group-text {
+  background-color: #e9ecef;
+  border-right: none;
+}
+
+.form-control {
+  border-left: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #4e73df;
+  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+button i {
+  vertical-align: middle;
+}
+
+.result {
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: opacity 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-outline-secondary, .btn-primary {
+  transition: transform 0.2s ease;
+}
+
+.btn-outline-secondary:hover, .btn-primary:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 15px;
+  }
+  .btn {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+  .card {
+    margin: 0 10px;
+  }
+}
